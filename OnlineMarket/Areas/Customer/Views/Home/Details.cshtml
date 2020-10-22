@@ -1,0 +1,159 @@
+﻿@model ShoppingCart
+
+
+<div class="container">
+    <form method="post">
+        <input hidden asp-for="ProductId" />
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="col-12 col-md-6">
+                    <h1 class="text-primary">@Model.Product.Category.Name</h1>
+                    <p class="text-warning">by @Model.Product.Manufacturer</p>
+                </div>
+            </div>
+            <img class="card-img-top" src="@Model.Product.ImageUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Product.Name</h5>
+
+                <p class="text-dark text-decoration-none">@Html.Raw(Model.Product.Description)</p>
+
+                <div class="mt-2">
+
+                    @if (@Model.Product.ListPrice.ToString() != null)
+                    {
+                        <h3>List Price: <strike>@Model.Product.ListPrice.ToString("c")</strike></h3>
+                    }
+
+                    <h3>
+                        <span class="badge badge-danger">
+                            Price: @Model.Product.Price.ToString("c")
+                        </span>
+                    </h3>
+                    <div class="border border-dark" style="width:35%;">
+                        <input asp-for="Count" class="form-control" placeholder="Count">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="row">
+                    <a asp-action="Index" class="btn btn-outline-primary form-control col-sm m-1" style="height:50px;">Back to List</a>
+                    <button type="submit" value="Add to Cart" class="btn btn-outline-success form-control col-sm m-1" style="height:50px;">Add to Cart</button>
+                </div>
+                <!--<div class="row">
+                <div class="">
+                    <div class="col-2 text-primary"><h4>Count</h4></div>
+                    <div class="col-10"><input class="form-control" /></div>
+                </div>
+                <a class="btn btn-primary form-control btn-square btn-lg" style="height:50px;">Back to List</a>
+                <button type="submit" value="Add to Cart" class="btn btn-success btn-square btn-lg form-control" style="height:50px;">Add to Cart</button>-->
+                @*<div class="col-12 col-md-6 pb-1">
+                        <a class="btn btn-primary form-control btn-square btn-lg" style="height:50px;">Back to List</a>
+                    </div>
+                    <div class="col-12 col-md-6 pb-1">
+                        <button type="submit" value="Add to Cart" class="btn btn-success btn-square btn-lg form-control" style="height:50px;">Add to Cart</button>
+                    </div>*@
+                <!--</div>-->
+            </div>
+        </div>
+
+        @*<div class="container backgroundWhite">
+                <div class="card">
+                    <div class="card-header bg-light text-light ml-0 row container">
+
+                        <div class="col-12 col-md-6">
+                            <h1 class="text-primary">--TITLE--</h1>
+                            <p class="text-warning">by --Manufacturer--</p>
+                        </div>
+
+                        <div class="col-12 col-md-6 text-md-right pt-4">
+                            <span class="badge badge-warning pt-2" style="height:30px;">--CATEGORY --</span>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+                        <div class="container rounded p-2">
+                            <div class="row">
+                                <div class="col-8 col-lg-8">
+
+                                    <div class="row pl-2">
+                                        <h5 class="text-muted pb-2">List Price: <strike>$ --LIST PRICE--</strike></h5>
+                                    </div>
+
+                                    <div class="row text-center pl-2">
+
+                                        <div class="p-1 col-2 bg-secondary border-bottom">
+                                            <div>Quantity</div>
+                                        </div>
+
+                                        <div class="p-1 col-2 bg-secondary border-bottom">
+                                            <div>1-49</div>
+                                        </div>
+
+                                        <div class="p-1 col-2 bg-secondary border-bottom">
+                                            <div>50-99</div>
+                                        </div>
+
+                                        <div class="p-1 col-2 bg-secondary border-bottom">
+                                            <div>100+</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row text-center pl-2" style="color:maroon; font-weight:bold">
+
+                                        <div class="p-1 col-2 bg-secondary">
+                                            <div>Price</div>
+                                        </div>
+
+                                        <div class="p-1 col-2 bg-secondary">
+                                            <div>--PRICE--</div>
+                                        </div>
+
+                                        <div class="p-1 col-2 bg-secondary">
+                                            <div>--PRICE 50--</div>
+                                        </div>
+
+                                        <div class="p-1 col-2 bg-secondary">
+                                            <div>--PRICE 100--</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row pl-2">
+                                        <p class="text-secondary">--DESCRIPTION--</p>
+                                    </div>
+
+                                    <div class="row pl-2">
+                                        <div class="col-2 text-primary"><h4>Count</h4></div>
+                                        <div class="col-10"><input class="form-control" /></div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12 col-lg-3 offset-lg-1 text-center">
+                                    <img src="https://via.placeholder.com/150" width="100%" class="rounded" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="row">
+
+                            <div class="col-12 col-md-6 pb-1">
+                                <a lass="btn btn-success form-control btn-square btn-lg" style="height:50px;">Back to List</a>
+                            </div>
+
+                            <div class="col-12 col-md-6 pb-1">
+                                <button type="submit" value="Add to Cart" class="btn btn-primary btn-square btn-lg form-control" style="height:50px;">Add to Cart</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+    </form>
+</div>

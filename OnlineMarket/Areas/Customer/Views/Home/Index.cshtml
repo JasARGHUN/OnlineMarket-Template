@@ -1,0 +1,63 @@
+﻿@*@model IEnumerable<Product>*@
+
+@model ReflectionIT.Mvc.Paging.PagingList<Product>
+@using ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="get" class="form-inline">
+    <input name="filter" class="form-control" placeholder="Product name..."
+           value="@Model.RouteValue["Filter"]" />
+
+    <button type="submit" class="btn btn-info m-1">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+    </button>
+
+    <a class="btn btn-warning" asp-action="Index">
+        Reset
+    </a>
+</form>
+
+<div class="card-columns">
+    @foreach (var item in Model)
+    {
+        <a asp-action="Details" class="btn btn-outline-dark p-2 m-2" style="text-decoration:none;" asp-route-id="@item.Id">
+            <div class="card text-black-50">
+                <div class="card-header">
+                    <p>Category: @item.Category.Name</p>
+                </div>
+                <img class="card-img-top" src="@item.ImageUrl" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    Manufacturer: <p>@item.Manufacturer</p>
+                    <hr />
+
+                    @if (item.ListPrice.ToString() != null)
+                    {
+                        <p>Price: <span class="badge badge-warning">@item.ListPrice</span></p>
+                    }
+
+                    <h5 class="text-danger">Discount: <span class="badge badge-success">@item.Price</span></h5>
+                </div>
+            </div>
+        </a>
+    }
+</div>
+
+@if (Model.PageCount == 0)
+{
+    <div class="text-center mt-4">
+        <h5>Sorry, no results were found for your search.</h5>
+    </div>
+}
+
+<br />
+<hr />
+
+<div class="d-flex justify-content-center">
+    <nav aria-label="Suppliers navigation example">
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+    </nav>
+</div>
